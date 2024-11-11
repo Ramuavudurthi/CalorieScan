@@ -1,0 +1,56 @@
+<!-- views/analytics.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Analytics</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Analytics</h1>
+        <form method="GET">
+            <input type="date" name="startDate" required>
+            <input type="date" name="endDate" required>
+            <button type="submit">Filter</button>
+        </form>
+        <canvas id="nutritionChart"></canvas>
+        <script>
+            const ctx = document.getElementById('nutritionChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: <%= JSON.stringify(dates) %>,
+                    datasets: [
+                        {
+                            label: 'Total Calories',
+                            data: <%= JSON.stringify(totalCalories) %>,
+                            backgroundColor: 'rgba(255, 99, 132, 0.6)'
+                        },
+                        {
+                            label: 'Total Proteins',
+                            data: <%= JSON.stringify(totalProteins) %>,
+                            backgroundColor: 'rgba(54, 162, 235, 0.6)'
+                        },
+                        {
+                            label: 'Total Carbohydrates',
+                            data: <%= JSON.stringify(totalCarbohydrates) %>,
+                            backgroundColor: 'rgba(255, 206, 86, 0.6)'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>

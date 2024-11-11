@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+    <!-- Navbar -->
+    <!-- Navigation Bar -->
+    <nav class="bg-green-500 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">CalorieScan</h1>
+            <ul class="flex space-x-4 items-center">
+                <li><a href="/dashboard" class="hover:text-gray-200">Home</a></li>
+                <li><a href="/profile" class="hover:text-gray-200">Profile</a></li>
+                <li><a href="/settings" class="hover:text-gray-200">Settings</a></li>
+                <% if (user && user.role === 'admin') { %>
+                    <li><a href="/admin/dashboard" class="hover:text-gray-200">Admin</a></li>
+                <% } %>
+                
+                <li>
+                <li>
+                    <a href="/logout" class="ml-4 inline-block bg-red-500 py-2 px-4 rounded-lg hover:bg-red-600 transition duration-200">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Admin Dashboard Content -->
+    <div class="container mx-auto my-8 flex-grow p-4">
+        <h1 class="text-2xl font-bold mb-4">Admin Dashboard</h1>
+        
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <!-- Users Management Card -->
+            <a href="/admin/users" class="bg-green-500 text-white p-6 rounded-lg shadow-lg text-center hover:bg-green-600 transition duration-200">
+                <h2 class="text-xl font-bold mb-2">Manage Users</h2>
+                <p>View, edit, and manage all users.</p>
+            </a>
+
+            <!-- Reports Card -->
+            <a href="/admin/reports" class="bg-blue-500 text-white p-6 rounded-lg shadow-lg text-center hover:bg-blue-600 transition duration-200">
+                <h2 class="text-xl font-bold mb-2">View Reports</h2>
+                <p>Generate and view user activity reports.</p>
+            </a>
+
+            <!-- Settings Card -->
+            <a href="/admin/settings" class="bg-yellow-500 text-white p-6 rounded-lg shadow-lg text-center hover:bg-yellow-600 transition duration-200">
+                <h2 class="text-xl font-bold mb-2">Settings</h2>
+                <p>Configure application settings.</p>
+            </a>
+
+            <!-- Content Moderation Card -->
+            <a href="/admin/moderate-content" class="bg-red-500 text-white p-6 rounded-lg shadow-lg text-center hover:bg-red-600 transition duration-200">
+                <h2 class="text-xl font-bold mb-2">Moderate Content</h2>
+                <p>Review and moderate user-generated content.</p>
+            </a>
+
+            <!-- Feedback Management Card -->
+            <a href="/admin/feedback" class="bg-purple-500 text-white p-6 rounded-lg shadow-lg text-center hover:bg-purple-600 transition duration-200">
+                <h2 class="text-xl font-bold mb-2">User Feedback</h2>
+                <p>View and respond to user feedback.</p>
+            </a>
+
+            <!-- Admin Logs Card -->
+            <a href="/admin/logs" class="bg-gray-500 text-white p-6 rounded-lg shadow-lg text-center hover:bg-gray-600 transition duration-200">
+                <h2 class="text-xl font-bold mb-2">Admin Logs</h2>
+                <p>Access logs of admin activities.</p>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-green-500 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 CalorieScan. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

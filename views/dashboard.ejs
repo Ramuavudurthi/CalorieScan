@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrition Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Navigation Bar -->
+     <!-- Navigation Bar -->
+     <nav class="bg-green-500 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">CalorieScan</h1>
+            <ul class="flex space-x-4 items-center">
+                <li><a href="/dashboard" class="hover:text-gray-200">Home</a></li>
+                <li><a href="/profile" class="hover:text-gray-200">Profile</a></li>
+                <li><a href="/settings" class="hover:text-gray-200">Settings</a></li>
+                <% if (user && user.role === 'admin') { %>
+                    <li><a href="/admin/dashboard" class="hover:text-gray-200">Admin</a></li>
+                <% } %>
+                
+                <li>
+                <li>
+                    <a href="/logout" class="ml-4 inline-block bg-red-500 py-2 px-4 rounded-lg hover:bg-red-600 transition duration-200">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto my-8 p-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 justify-center items-center mx-48">
+            <!-- Left Section: Greeting and Graph -->
+            <div class="col-span-2">
+                <h1 class="text-2xl font-semibold text-gray-800">Analytics</h1>
+                <div class="mt-4 p-4 rounded-lg max-w-md">
+                    <canvas id="nutritionChart" width="400" height="400"></canvas>
+                </div>
+            </div>
+
+            <!-- Right Section: Cards and View Data Button -->
+            <div class="flex flex-col space-y-4">
+                <!-- Calorie Calculator Card -->
+                <div class="bg-green-500 text-white p-6 rounded-lg shadow-lg text-center">
+                    <h2 class="text-xl font-bold mb-2">Calorie Calculator</h2>
+                    <p>Calculate your daily caloric needs.</p>
+                    <a href="/calculator" class="mt-4 inline-block bg-white text-green-500 py-2 px-4 rounded-lg hover:bg-gray-200">
+                        Open Calculator
+                    </a>
+                </div>
+
+                <!-- Calorie Tracker Card -->
+                <div class="bg-green-500 text-white p-6 rounded-lg shadow-lg text-center">
+                    <h2 class="text-xl font-bold mb-2">Calorie Tracker</h2>
+                    <p>Track your daily caloric intake.</p>
+                    <a href="/tracker" class="mt-4 inline-block bg-white text-green-500 py-2 px-4 rounded-lg hover:bg-gray-200">
+                        Open Tracker
+                    </a>
+                </div>
+
+                <!-- View User Data Button -->
+                <div class="bg-green-500 text-white p-6 rounded-lg shadow-lg text-center">
+                    <h2 class="text-xl font-bold mb-2">User Data</h2>
+                    <p>View your recorded nutritional data.</p>
+                    <a href="/user-data" class="mt-4 inline-block bg-white text-green-500 py-2 px-4 rounded-lg hover:bg-gray-200">
+                        View User Data
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-green-500 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Nutrition Dashboard. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Chart -->
+    <script src="/js/dashboard.js">
+        
+    </script>
+    
+</body>
+
+</html>

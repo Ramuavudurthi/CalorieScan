@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800 flex flex-col min-h-screen">
+     <!-- Navigation Bar -->
+     <nav class="bg-green-500 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">CalorieScan</h1>
+            <ul class="flex space-x-4 items-center">
+                <li><a href="/dashboard" class="hover:text-gray-200">Home</a></li>
+                <li><a href="/profile" class="hover:text-gray-200">Profile</a></li>
+                <li><a href="/settings" class="hover:text-gray-200">Settings</a></li>
+                <% if (user && user.role === 'admin') { %>
+                    <li><a href="/admin/dashboard" class="hover:text-gray-200">Admin</a></li>
+                <% } %>
+                
+                <li>
+                <li>
+                    <a href="/logout" class="ml-4 inline-block bg-red-500 py-2 px-4 rounded-lg hover:bg-red-600 transition duration-200">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="flex-grow container mx-auto flex items-center justify-center mt-10">
+        <div class="bg-white shadow rounded-lg p-6 w-full max-w-md">
+            <h1 class="text-2xl font-bold mb-4 text-center">User Profile</h1>
+            <p class="mb-2"><strong>Name:</strong> <%= user.name %></p>
+            <p class="mb-2"><strong>Email:</strong> <%= user.email %></p>
+            <p class="mb-2"><strong>Phone:</strong> <%= user.phone %></p>
+            <p class="mb-2"><strong>Role:</strong> <%= user.role %></p>
+            <p class="mb-2"><strong>Joined:</strong> <%= user.created_at %></p>
+
+            <!-- Edit Button -->
+            <div class="text-center mt-4">
+                <a href="/profile/edit" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200">
+                    Edit Profile
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-green-500 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Nutrition Dashboard. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

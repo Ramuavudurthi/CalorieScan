@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Food Data</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+    <!-- Navigation Bar -->
+     <!-- Navigation Bar -->
+     <nav class="bg-green-500 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">CalorieScan</h1>
+            <ul class="flex space-x-4 items-center">
+                <li><a href="/dashboard" class="hover:text-gray-200">Home</a></li>
+                <li><a href="/profile" class="hover:text-gray-200">Profile</a></li>
+                <li><a href="/settings" class="hover:text-gray-200">Settings</a></li>
+                <% if (user && user.role === 'admin') { %>
+                    <li><a href="/admin/dashboard" class="hover:text-gray-200">Admin</a></li>
+                <% } %>
+                
+                <li>
+                <li>
+                    <a href="/logout" class="ml-4 inline-block bg-red-500 py-2 px-4 rounded-lg hover:bg-red-600 transition duration-200">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto my-8 p-6 bg-white rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold mb-4 text-gray-800">User Food Data</h2>
+        <table class="min-w-full bg-white border border-gray-300">
+            <thead>
+                <tr class="bg-green-500 text-white">
+                    <th class="py-3 px-4 border-b">Food Item Name</th>
+                    <th class="py-3 px-4 border-b">Weight (g)</th>
+                    <th class="py-3 px-4 border-b">Calories</th>
+                    <th class="py-3 px-4 border-b">Proteins (g)</th>
+                    <th class="py-3 px-4 border-b">Carbohydrates (g)</th>
+                    <th class="py-3 px-4 border-b">Fats (g)</th>
+                    <th class="py-3 px-4 border-b">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% foodData.forEach(item => { %>
+                    <tr class="text-center odd:bg-gray-100 even:bg-white">
+                        <td class="py-3 px-4 border-b"><%= item.name %></td>
+                        <td class="py-3 px-4 border-b"><%= item.weight %> g</td>
+                        <td class="py-3 px-4 border-b"><%= item.calories %></td>
+                        <td class="py-3 px-4 border-b"><%= item.proteins %></td>
+                        <td class="py-3 px-4 border-b"><%= item.carbohydrates %></td>
+                        <td class="py-3 px-4 border-b"><%= item.fats %></td>
+                        <td class="py-3 px-4 border-b"><%= new Date(item.date).toLocaleDateString('en-GB') %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-green-500 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 CalorieScan. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

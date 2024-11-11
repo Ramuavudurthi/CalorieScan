@@ -1,0 +1,68 @@
+<!-- views/calorieResult.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutritional Information</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+        }
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 100px); /* Adjust according to footer height */
+            padding: 20px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 flex flex-col">
+
+     <!-- Navigation Bar -->
+     <nav class="bg-green-500 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">CalorieScan</h1>
+            <ul class="flex space-x-4 items-center">
+                <li><a href="/dashboard" class="hover:text-gray-200">Home</a></li>
+                <li><a href="/profile" class="hover:text-gray-200">Profile</a></li>
+                <li><a href="/settings" class="hover:text-gray-200">Settings</a></li>
+                <% if (user && user.role === 'admin') { %>
+                    <li><a href="/admin/dashboard" class="hover:text-gray-200">Admin</a></li>
+                <% } %>
+                
+                <li>
+                <li>
+                    <a href="/logout" class="ml-4 inline-block bg-red-500 py-2 px-4 rounded-lg hover:bg-red-600 transition duration-200">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content flex-grow">
+        <div class="bg-white shadow-lg rounded-lg p-8 max-w-lg w-full mx-auto">
+            <h1 class="text-3xl font-bold mb-6 text-center text-green-600">Nutritional Information</h1>
+            <p class="text-lg"><strong>Food Item:</strong> <%= foodItem %></p>
+            <p class="text-lg"><strong>Weight:</strong> <%= weight %> grams</p>
+            <p class="text-lg"><strong>Calories:</strong> <%= calories %> kcal</p>
+            <p class="text-lg"><strong>Protein:</strong> <%= protein %> g</p>
+            <p class="text-lg"><strong>Carbohydrates:</strong> <%= carbs %> g</p>
+            <p class="text-lg"><strong>Fats:</strong> <%= fats %> g</p>
+
+            <!-- Button to calculate again -->
+            <div class="mt-8 text-center">
+                <a href="/calculator" class="inline-block bg-green-500 text-white py-2 px-6 rounded-lg hover:bg-green-600 transition duration-200">Calculate Again</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-green-500 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Nutrition Dashboard. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

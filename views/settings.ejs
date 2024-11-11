@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+     <!-- Navigation Bar -->
+     <nav class="bg-green-500 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">CalorieScan</h1>
+            <ul class="flex space-x-4 items-center">
+                <li><a href="/dashboard" class="hover:text-gray-200">Home</a></li>
+                <li><a href="/profile" class="hover:text-gray-200">Profile</a></li>
+                <li><a href="/settings" class="hover:text-gray-200">Settings</a></li>
+                <% if (user && user.role === 'admin') { %>
+                    <li><a href="/admin/dashboard" class="hover:text-gray-200">Admin</a></li>
+                <% } %>
+                
+                <li>
+                <li>
+                    <a href="/logout" class="ml-4 inline-block bg-red-500 py-2 px-4 rounded-lg hover:bg-red-600 transition duration-200">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mx-auto my-8 p-4">
+        <h2 class="text-2xl font-semibold text-gray-800">Chart Settings</h2>
+        <form id="settingsForm" class="mt-4" action="/api/settings" method="POST"> <!-- Changed action -->
+            <div class="mb-4">
+                <label for="chartType" class="block text-gray-700">Chart Type:</label>
+                <select id="chartType" name="chartType" class="mt-1 block w-full p-2 border border-gray-300 rounded">
+                    <option value="doughnut">Doughnut</option>
+                    <option value="bar">Column</option>
+                </select>
+            </div>
+        
+            <div class="mb-4">
+                <label for="colorCalories" class="block text-gray-700">Calories Color:</label>
+                <input type="color" id="colorCalories" name="caloriesColor" class="mt-1">
+            </div>
+            <div class="mb-4">
+                <label for="colorProtein" class="block text-gray-700">Protein Color:</label>
+                <input type="color" id="colorProtein" name="proteinColor" class="mt-1">
+            </div>
+            <div class="mb-4">
+                <label for="colorCarbs" class="block text-gray-700">Carbohydrates Color:</label>
+                <input type="color" id="colorCarbs" name="carbsColor" class="mt-1">
+            </div>
+            <div class="mb-4">
+                <label for="colorFats" class="block text-gray-700">Fats Color:</label>
+                <input type="color" id="colorFats" name="fatsColor" class="mt-1">
+            </div>
+        
+            <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded">Save Settings</button>
+        </form>
+        
+    </div>
+
+    <script>
+        document.getElementById('settingsForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Capture form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            // Send data to the server
+            fetch('/api/settings', { // Changed URL to /api/settings
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Redirect to dashboard on success
+                    window.location.href = '/dashboard';
+                } else {
+                    alert('Failed to save settings. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+
+    <footer class="bg-green-500 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 CalorieScan. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

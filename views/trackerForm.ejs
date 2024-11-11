@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calorie Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 flex flex-col min-h-screen">
+
+    <!-- Navigation Bar -->
+     <!-- Navigation Bar -->
+     <nav class="bg-green-500 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">CalorieScan</h1>
+            <ul class="flex space-x-4 items-center">
+                <li><a href="/dashboard" class="hover:text-gray-200">Home</a></li>
+                <li><a href="/profile" class="hover:text-gray-200">Profile</a></li>
+                <li><a href="/settings" class="hover:text-gray-200">Settings</a></li>
+                <% if (user && user.role === 'admin') { %>
+                    <li><a href="/admin/dashboard" class="hover:text-gray-200">Admin</a></li>
+                <% } %>
+                
+                <li>
+                <li>
+                    <a href="/logout" class="ml-4 inline-block bg-red-500 py-2 px-4 rounded-lg hover:bg-red-600 transition duration-200">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Form Section Centered in the Page -->
+    <div class="flex-grow flex items-center justify-center">
+        <div class="w-full max-w-md p-6 bg-white shadow-lg rounded-lg">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Calorie Tracker</h2>
+            
+            <!-- Calorie Tracker Form -->
+            <form action="/tracker" method="POST" class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 font-bold mb-2" for="foodItem">Food Item</label>
+                    <input type="text" name="foodItem" id="foodItem" placeholder="Food Item Name"
+                        class="w-full p-3 border border-gray-300 rounded-lg" required>
+                </div>
+                
+                <div>
+                    <label class="block text-gray-700 font-bold mb-2" for="weight">Weight (g)</label>
+                    <input type="number" name="weight" id="weight" placeholder="Weight in grams"
+                        class="w-full p-3 border border-gray-300 rounded-lg" required>
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 font-bold mb-2" for="date">Date</label>
+                    <input type="date" name="date" id="date"
+                        class="w-full p-3 border border-gray-300 rounded-lg" required>
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 transition duration-200">Calculate & Save</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer at the Bottom -->
+    <footer class="bg-green-500 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Nutrition Dashboard. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
